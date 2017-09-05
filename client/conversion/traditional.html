@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <title>Conversion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+  </head>
+  <body class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Traditional Conversion</h3>
+        <a id="paypal-button" href="/misc/setexpresscheckout"></a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        // Comment me out when starting the exercise
+        
+        window.paypalCheckoutReady = function () {
+            paypal.checkout.setup('merchantid', {
+                environment: 'sandbox',
+                container: 'paypal-button'
+            });
+        }
+        
+    </script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    
+    <script>
+        // Exercise Setup
+        function onError(err) {
+            document.getElementById('error-message').textContent = err.message;
+            showDom('paypal-error');
+        }
+
+        
+        var client = {
+            sandbox:    'AQzwHJt9jZAyQbf-DnaqZefvbTCMammV7ZFsnW23thr9qUQX9RGMgSVbzRjxXTAODKjh2W0k6Ei4Q2m9'
+        };
+        // END Setup
+        
+        // PART 1: Create v4 paypal-button
+            // Set environment to sandbox
+            // Set client to client variable
+            // Create a payment callback
+                // Execute AJAX GET '/paypal/classic/setexpresscheckout'
+                // Return the TOKEN
+            // Create a onAuthorize callback to redirect the user.
+            // Call onError function in onError callback
+            // Create an onCancel callback thta redirects the user.
+            // Set the appropriate DOM ID
+                // Change it to a div container
+                // Remove the href
+                
+
+        
+        
+    </script>
+
+
+  </body>
+</html>
