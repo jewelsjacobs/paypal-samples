@@ -2,12 +2,13 @@ export default function (router) {
     router.get('/', (req, res) => {
         
         let paypal = req.app.kraken.get('paypalClassic');
-        let hostconfig = req.app.kraken.get('host');
-        let port = ':' + hostconfig.port || '';
+        let port = process.env.PORT || 3000;
+        let ip = process.env.IP || 'localhost';
+        port = ':' + port || '';
 
         let nvpParams = {
-            RETURNURL: 'http://' + hostconfig.name + port + '/misc/returnurl.html',
-            CANCELURL: 'http://' + hostconfig.name + port + '/misc/cancelurl.html',
+            RETURNURL: 'http://' + ip + port + '/misc/returnurl.html',
+            CANCELURL: 'http://' + ip + port + '/misc/cancelurl.html',
             PAYMENTREQUEST_0_AMT: '100.00'
         };
             

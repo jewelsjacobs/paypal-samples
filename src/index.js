@@ -7,7 +7,7 @@ import PayPal from 'paypal-classic-api';
 
 
 let app = express();
-let port = process.env.PORT || 8080;
+let port = process.env.PORT || 3000;
 let ip = process.env.IP || 'localhost';
 
 let krakenOpts = {
@@ -25,8 +25,9 @@ let krakenOpts = {
         let classicConfig = config.get('paypalClassicConfig');
         let paypalClassic = new PayPal(classicConfig);
         config.set('paypalClassic', paypalClassic);
-
-        console.log('Visit http://' + ip + ':' + port );
+        if (process.env.NODE_ENV === 'production') {
+          console.log('Visit http://' + ip + ':' + port);
+        }
 
         callback(null, config);
     }
@@ -41,6 +42,7 @@ app.use(express.static(path.resolve(__dirname, '../client')));
 let server = app.listen(port, ip);
 
 server.on('listening', () => {
+  if (process.env.NODE_ENV !== 'production') {
     console.log('Server running on ' + server.address().address + ' on port ' + server.address().port + '!');
-    
+  }
 });
